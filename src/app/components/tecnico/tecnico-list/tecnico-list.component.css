@@ -19,3 +19,10 @@ h1 {
     width: 100%;
     text-align: center;
 }
+.edit{
+    color: rgb(0, 140, 255);
+}
+
+.delete{
+    color: red;
+}
