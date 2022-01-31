@@ -18,7 +18,7 @@ export class TecnicoCreateComponent implements OnInit {
     cpf:          '',
     email:        '',
     senha:        '',
-    perfis:       [],
+    perfis:       ['2'],
     dataCriacao:  '',
   }
 
@@ -51,7 +51,7 @@ export class TecnicoCreateComponent implements OnInit {
     } );
   }
 
-  addPerfil(perfil: any): void {
+  addPerfil(perfil: String): void {
     if( this.tecnico.perfis.includes(perfil) ){
       this.tecnico.perfis.splice( this.tecnico.perfis.indexOf(perfil), 1 );
     } else {
