@@ -11,6 +11,8 @@ import { ChamadoService } from 'src/app/services/chamado.service';
 })
 export class ChamadoListComponent implements OnInit {
 
+  ELEMENT_DATA: Chamado[] = [];
+
   displayedColumns: string[] = ['id', 'titulo', 'dataAbertura', 'cliente', 'tecnico', 'prioridade', 'status', 'acoes'];
   dataSource = new MatTableDataSource<Chamado>();
 
@@ -26,6 +28,7 @@ export class ChamadoListComponent implements OnInit {
 
   findAll() {
     this.service.findAll().subscribe( resposta => {
+      this.ELEMENT_DATA = resposta;
       this.dataSource = new MatTableDataSource<Chamado>(resposta);
       this.dataSource.paginator = this.paginator;
     } )
@@ -34,6 +37,33 @@ export class ChamadoListComponent implements OnInit {
   applyFilter(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;
     this.dataSource.filter = filterValue.trim().toLowerCase();
+    this.dataSource.filter = filterValue.trim().toLowerCase();
+  }
+
+  retornaStatus(status: any): string {
+    switch(status) {
+      case 0: return 'ABERTO';
+      case 1: return 'EM ANDAMENTO';
+      default: return 'ENCERRADO';
+    }
+  }
+
+  retornaPrioridade(prioridade: any): string {
+    switch(prioridade) {
+      case 0: return 'BAIXA';
+      case 1: return 'MÉDIA';
+      default: return 'ALTA';
+    }
+  }
+
+  filterByStatus(status: any): void{
+    let list: Chamado[] = [];
+    this.ELEMENT_DATA.forEach(element => {
+      if(element.status == status) 
+        list.push(element);
+    })
+    this.dataSource = new MatTableDataSource<Chamado>(list);
+    this.dataSource.paginator = this.paginator;
   }
 
 }
