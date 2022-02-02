@@ -20,8 +20,12 @@ export class AuthService {
     })
   }
 
-  successfullLogin( authToken: string ) {
+  successfullLogin( authToken: string, idPessoa: string ) {
+    console.log(authToken);
+    console.log(idPessoa);
     localStorage.setItem('token', authToken);
+    localStorage.setItem('token', authToken);
+    localStorage.setItem('idPessoa', idPessoa);
   }
 
   isAuthenticated() {
