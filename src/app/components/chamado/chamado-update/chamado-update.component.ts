@@ -16,6 +16,8 @@ import { TecnicoService } from 'src/app/services/tecnico.service';
 })
 export class ChamadoUpdateComponent implements OnInit {
 
+  selected = '2';
+
   chamado: Chamado = {
     prioridade: '',
     status: '0',
@@ -55,6 +57,10 @@ export class ChamadoUpdateComponent implements OnInit {
   findById(): void {
     this.service.findById(this.chamado.id).subscribe( resposta =>{
       this.chamado  = resposta;
+      this.chamado.prioridade = this.chamado.prioridade.toString();
+      this.chamado.cliente    = this.chamado.cliente.toString();
+      this.chamado.tecnico    = this.chamado.tecnico.toString();
+      console.log(this.chamado);
     } )
   }
 

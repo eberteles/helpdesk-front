@@ -27,7 +27,7 @@
         <mat-form-field class="fullWidth" appearance="legacy">
             <mat-label>Técnico</mat-label>
             <mat-select [(ngModel)]="chamado.tecnico" name="tecnico" [formControl]="tecnico" required>
-                <mat-option *ngFor="let tec of tecnicos" value="{{ tec.id }}">{{ tec.nome }}</mat-option>
+                <mat-option *ngFor="let tec of tecnicos" [attr.selected]="chamado.tecnico==tec.id ? true : null" value="{{ tec.id }}">{{ tec.nome }}</mat-option>
             </mat-select>
         </mat-form-field>
 
